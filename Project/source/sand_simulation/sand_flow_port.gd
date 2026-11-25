@@ -7,4 +7,4 @@ class_name SandFlowPort
 extends Node2D
 
 
-@export var _flow_rate:float
+@export var _links:Array[SandFlowLink] = []

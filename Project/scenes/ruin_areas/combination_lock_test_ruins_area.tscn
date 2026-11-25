@@ -6,10 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://bedd3vooerrh" path="res://scenes/objects/large_gate.tscn" id="4_fem37"]
 [ext_resource type="PackedScene" uid="uid://dy87jfnj5q3ly" path="res://scenes/objects/combination_lock.tscn" id="5_qdaj7"]
 [ext_resource type="PackedScene" uid="uid://dwkn7r40y77rd" path="res://scenes/objects/lever.tscn" id="6_j40hi"]
+[ext_resource type="Shader" uid="uid://dt4o87c7gsvth" path="res://source/sand_simulation/container_filling_shader.gdshader" id="7_4uoqm"]
+[ext_resource type="Script" uid="uid://ccsanggfngq63" path="res://source/sand_simulation/sand_container.gd" id="7_hmlxx"]
 
 [sub_resource type="Resource" id="Resource_fem37"]
 resource_local_to_scene = true
 script = ExtResource("2_82snf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4uoqm"]
+shader = ExtResource("7_4uoqm")
+shader_parameter/min_y = -80.0
+shader_parameter/max_y = 0.0
+shader_parameter/fill_percentage = 0.0
+shader_parameter/fill_color = Color(1, 1, 0, 0.31764707)
 
 [node name="CombinationLockTestRuinsArea" type="Node2D" unique_id=2042910573]
 script = ExtResource("1_q77yo")
@@ -25,12 +34,16 @@ position = Vector2(66, 0)
 
 [node name="CombinationLock" parent="." unique_id=61921285 node_paths=PackedStringArray("_linked_activatables") instance=ExtResource("5_qdaj7")]
 position = Vector2(20, -20)
-_attempt_check_cooldown_duration = null
-_solved = null
 _linked_activatables = [NodePath("../LargeGate")]
-_separate_linked_activation = null
 
 [node name="Lever" parent="." unique_id=1498261423 node_paths=PackedStringArray("_linked_activatables") instance=ExtResource("6_j40hi")]
 position = Vector2(-28, 0)
 _linked_activatables = [NodePath("../LargeGate")]
 _separate_linked_activation = false
+
+[node name="SandContainer" type="Polygon2D" parent="." unique_id=699745318]
+material = SubResource("ShaderMaterial_4uoqm")
+color = Color(1, 0, 0, 0)
+polygon = PackedVector2Array(-56, -80, 40, -80, 40, -40, 54, -40, 54, 0, -56, 0)
+script = ExtResource("7_hmlxx")
+metadata/_custom_type_script = "uid://ccsanggfngq63"
