@@ -973,7 +973,7 @@ func process_logic(delta: float) -> void:
 		match inactive_update_mode:
 			InactiveUpdateMode.NEVER: return
 			# InactiveUpdateMode.EXPONENTIALLY:
-			# TODO - Trigger positional updates less frequently as more PCams gets added
+			# TODO - Triggerable positional updates less frequently as more PCams gets added
 
 	if _should_follow:
 		_follow(delta)

@@ -769,7 +769,7 @@ func process_logic(delta: float) -> void:
 				if _limit_inactive_pcam:
 					global_position = _set_limit_clamp_position(global_position)
 			# InactiveUpdateMode.EXPONENTIALLY:
-			# TODO - Trigger positional updates less frequently as more PCams gets added
+			# TODO - Triggerable positional updates less frequently as more PCams gets added
 
 	_limit_checker()
 
@@ -1850,7 +1850,7 @@ func _limit_target_exist_error() -> void:
 func set_limit_target(value: NodePath) -> void:
 	limit_target = value
 
-	# Waits for PCam2d's _ready() before trying to validate limit_node_path
+	# Waits for PCam2d's _ready() before trying to is_valid limit_node_path
 	if not is_node_ready(): await ready
 
 	# Removes signal from existing TileMapLayer node

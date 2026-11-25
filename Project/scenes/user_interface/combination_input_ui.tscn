@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://4p0uvg6ew7oj"]
+
+[ext_resource type="Script" uid="uid://c6ne7oc6rv7sm" path="res://source/user_interface/combination_input_ui.gd" id="1_mk0ht"]
+
+[node name="CombinationInputUI" type="Control" unique_id=643139848]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mk0ht")
+_combination_sprites = null
+_required_combination_amount = null
+_inputted_combination = null
+metadata/_custom_type_script = "uid://c6ne7oc6rv7sm"
+
+[node name="InputTextureRects" type="HBoxContainer" parent="." unique_id=978314426]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="InputTextureRects" unique_id=978559004]
+layout_mode = 2

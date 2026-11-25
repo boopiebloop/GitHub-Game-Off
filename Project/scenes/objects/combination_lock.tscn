@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://dy87jfnj5q3ly"]
+
+[ext_resource type="Texture2D" uid="uid://bnf2qiyhgocdt" path="res://assets/textures/ruins/placeholder_2/placeholder_ruins_2_tile_set.png" id="1_f60sn"]
+[ext_resource type="Shader" uid="uid://btxwo8jh3txu" path="res://source/shaders/pixel_art_outline_shader.gdshader" id="1_kymj2"]
+[ext_resource type="Script" uid="uid://deabdbds1hjfn" path="res://source/components/combination_lock.gd" id="1_p0bqs"]
+[ext_resource type="Script" uid="uid://cxuhdks4yj5xp" path="res://source/components/connectables/selectable.gd" id="3_42yxl"]
+[ext_resource type="Script" uid="uid://cdsmnuknl1sfs" path="res://source/utils/animation_tree_debugger.gd" id="3_xd8lk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xd8lk"]
+load_path = "res://.godot/imported/placeholder_ruins_2_tile_set.png-7afd1ab4081873d5d742289c2b55f796.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17153"]
+atlas = SubResource("CompressedTexture2D_xd8lk")
+region = Rect2(369, 312, 6, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_42yxl"]
+load_path = "res://.godot/imported/placeholder_ruins_2_tile_set.png-7afd1ab4081873d5d742289c2b55f796.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd8lk"]
+atlas = SubResource("CompressedTexture2D_42yxl")
+region = Rect2(345, 312, 6, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_17153"]
+load_path = "res://.godot/imported/placeholder_ruins_2_tile_set.png-7afd1ab4081873d5d742289c2b55f796.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt18b"]
+atlas = SubResource("CompressedTexture2D_17153")
+region = Rect2(353, 312, 6, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7nfe"]
+load_path = "res://.godot/imported/placeholder_ruins_2_tile_set.png-7afd1ab4081873d5d742289c2b55f796.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yr5i"]
+atlas = SubResource("CompressedTexture2D_l7nfe")
+region = Rect2(361, 312, 6, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42yxl"]
+shader = ExtResource("1_kymj2")
+shader_parameter/clr = Color(0, 0, 0, 1)
+shader_parameter/type = 2
+shader_parameter/thickness = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xd8lk"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_17153"]
+animation = &"hovering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rt18b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l7nfe"]
+advance_mode = 2
+advance_condition = &"detection"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2yr5i"]
+advance_mode = 2
+advance_condition = &"lost_detection"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xd8lk"]
+advance_mode = 2
+advance_condition = &"activated"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_17153"]
+advance_mode = 2
+advance_condition = &"activated"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_17153"]
+states/RESET/node = SubResource("AnimationNodeAnimation_xd8lk")
+states/RESET/position = Vector2(370, 112)
+states/hovering/node = SubResource("AnimationNodeAnimation_17153")
+states/hovering/position = Vector2(370, 25)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_rt18b"), "RESET", "hovering", SubResource("AnimationNodeStateMachineTransition_l7nfe"), "hovering", "RESET", SubResource("AnimationNodeStateMachineTransition_2yr5i"), "hovering", "End", SubResource("AnimationNodeStateMachineTransition_xd8lk"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_17153")]
+graph_offset = Vector2(66, -35)
+
+[sub_resource type="Animation" id="Animation_xd8lk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombinationLockSprite:material:shader_parameter/thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_17153"]
+resource_name = "hovering"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombinationLockSprite:material:shader_parameter/thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.025, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rt18b"]
+_data = {
+&"RESET": SubResource("Animation_xd8lk"),
+&"hovering": SubResource("Animation_17153")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd8lk"]
+shader = ExtResource("1_kymj2")
+shader_parameter/clr = Color(1, 1, 1, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42yxl"]
+atlas = ExtResource("1_f60sn")
+region = Rect2(119, 266, 17, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hyts"]
+size = Vector2(14, 10)
+
+[node name="CombinationLock" type="Node2D" unique_id=61921285 node_paths=PackedStringArray("_input_sprites", "_connected_animation_tree")]
+script = ExtResource("1_p0bqs")
+_input_sprites = [NodePath("InputSprite1"), NodePath("InputSprite2"), NodePath("InputSprite3")]
+_blank_texture = SubResource("AtlasTexture_17153")
+_combination_variant_textures = Array[Texture2D]([SubResource("AtlasTexture_xd8lk"), SubResource("AtlasTexture_rt18b"), SubResource("AtlasTexture_2yr5i")])
+_hover_sprite_material = SubResource("ShaderMaterial_42yxl")
+_solution = Array[int]([0, 1, 2])
+_inputs = Array[int]([-1, -1, -1])
+_selected_input_index = -1
+_connected_animation_tree = NodePath("AnimationTree")
+metadata/_custom_type_script = "uid://deabdbds1hjfn"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=942059104]
+tree_root = SubResource("AnimationNodeStateMachine_17153")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/activated = false
+parameters/conditions/detection = false
+parameters/conditions/lost_detection = false
+script = ExtResource("3_xd8lk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=123922908]
+libraries/ = SubResource("AnimationLibrary_rt18b")
+
+[node name="InputSprite1" type="Sprite2D" parent="." unique_id=128451365]
+visible = false
+position = Vector2(-8, -16)
+texture = SubResource("AtlasTexture_17153")
+
+[node name="InputSprite2" type="Sprite2D" parent="." unique_id=234779966]
+visible = false
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_17153")
+
+[node name="InputSprite3" type="Sprite2D" parent="." unique_id=771904985]
+visible = false
+position = Vector2(8, -16)
+texture = SubResource("AtlasTexture_17153")
+
+[node name="CombinationLockSprite" type="Sprite2D" parent="." unique_id=1719588540]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xd8lk")
+texture = SubResource("AtlasTexture_42yxl")
+
+[node name="Selectable" type="Area2D" parent="." unique_id=1478427471 node_paths=PackedStringArray("_connected_animation_tree")]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_42yxl")
+_connected_animation_tree = NodePath("../AnimationTree")
+metadata/_custom_type_script = "uid://cxuhdks4yj5xp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selectable" unique_id=894858194]
+shape = SubResource("RectangleShape2D_8hyts")
+
+[connection signal="selected" from="Selectable" to="." method="_on_selected"]

@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://1wu2obg5i2b2"]
+
+[ext_resource type="Texture2D" uid="uid://bnf2qiyhgocdt" path="res://assets/textures/ruins/placeholder_2/placeholder_ruins_2_tile_set.png" id="1_mi6dp"]
+[ext_resource type="Script" uid="uid://b4shjm2a2ah3r" path="res://source/components/connectables/detector.gd" id="2_rhj8v"]
+[ext_resource type="Script" uid="uid://cr74uilu4a37h" path="res://source/components/connectables/activator.gd" id="4_i7y4x"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m7bo"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1bdt2"]
+animation = &"activated"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_is61r"]
+advance_mode = 2
+advance_condition = &"deactivated"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bdt2"]
+advance_mode = 2
+advance_condition = &"activated"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8m7bo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1bdt2"]
+states/RESET/node = SubResource("AnimationNodeAnimation_8m7bo")
+states/RESET/position = Vector2(281, 114)
+states/Start/position = Vector2(113, 100)
+states/activated/node = SubResource("AnimationNodeAnimation_1bdt2")
+states/activated/position = Vector2(491, 114)
+transitions = ["activated", "RESET", SubResource("AnimationNodeStateMachineTransition_is61r"), "RESET", "activated", SubResource("AnimationNodeStateMachineTransition_1bdt2"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_8m7bo")]
+graph_offset = Vector2(-4, -35)
+
+[sub_resource type="Animation" id="Animation_i7y4x"]
+length = 0.03333666840530932
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"deactivated"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1bdt2"]
+resource_name = "activated"
+length = 0.6000200089409948
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(22, 7), Vector2(22, 6), Vector2(22, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -3.5), Vector2(0, -3), Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"activated"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t81cg"]
+_data = {
+&"RESET": SubResource("Animation_i7y4x"),
+&"activated": SubResource("Animation_1bdt2")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhj8v"]
+atlas = ExtResource("1_mi6dp")
+region = Rect2(48, 496, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q610"]
+atlas = ExtResource("1_mi6dp")
+region = Rect2(80, 496, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7y4x"]
+atlas = ExtResource("1_mi6dp")
+region = Rect2(112, 496, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bdt2"]
+atlas = ExtResource("1_mi6dp")
+region = Rect2(16, 496, 24, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4pas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhj8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q610")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7y4x")
+}],
+"loop": 0,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bdt2")
+}],
+"loop": 0,
+"name": &"deactivated",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhj8v"]
+size = Vector2(22, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hyts"]
+size = Vector2(20, 1)
+
+[node name="Button" type="Node2D" unique_id=2018734232 node_paths=PackedStringArray("_connected_animation_tree")]
+script = ExtResource("4_i7y4x")
+_connected_animation_tree = NodePath("AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1526966713]
+tree_root = SubResource("AnimationNodeStateMachine_1bdt2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/activated = false
+parameters/conditions/deactivated = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=344623234]
+libraries/ = SubResource("AnimationLibrary_t81cg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1345878146]
+sprite_frames = SubResource("SpriteFrames_n4pas")
+animation = &"deactivated"
+offset = Vector2(0, -4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1891873178]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1930202126]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_rhj8v")
+
+[node name="Detector" type="Area2D" parent="." unique_id=674918431 node_paths=PackedStringArray("_exempt_bodies")]
+script = ExtResource("2_rhj8v")
+_exempt_bodies = [NodePath("../StaticBody2D")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" unique_id=524984861]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_8hyts")
+
+[connection signal="detection" from="Detector" to="." method="activate"]
+[connection signal="detection_lost" from="Detector" to="." method="deactivate"]

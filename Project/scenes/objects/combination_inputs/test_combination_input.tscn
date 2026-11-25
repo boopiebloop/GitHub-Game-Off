@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://chqra773284v"]
+
+[ext_resource type="Script" uid="uid://deabdbds1hjfn" path="res://source/components/combination_lock.gd" id="1_ks574"]
+
+[node name="TestCombinationInput" type="Node2D" unique_id=213266917 node_paths=PackedStringArray("_input_sprites")]
+script = ExtResource("1_ks574")
+_input_sprites = [NodePath("InputSprite1")]
+
+[node name="InputSprite1" type="Sprite2D" parent="." unique_id=1457837191]
